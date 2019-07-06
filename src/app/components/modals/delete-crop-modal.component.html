@@ -1,0 +1,13 @@
+<div class="alert-modal">
+    <h3 class="alert-modal-title">DELETE CROP</h3>
+    <p *ngIf="request_feedback">
+        <span>{{ request_feedback.message }}</span>
+    </p>
+    <span class="alert-modal-text">Are you sure to delete this crop?</span>
+    <div>
+        <div class="alert-modal-buttons">
+            <button mat-raised-button color="primary"class="btn alert-modal-button alert-modal-button-success" (click)="onCloseConfirm()">Yes</button>
+            <button mat-raised-button class="alert-modal-button alert-modal-button-failure" (click)="onCloseCancel()">No</button>
+        </div>
+    </div>
+</div>

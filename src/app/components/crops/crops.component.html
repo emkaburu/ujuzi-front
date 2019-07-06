@@ -1,0 +1,74 @@
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header border_bottom_gray marg_bottom_small">
+	     <div class="row ">
+	        <div class="col-md-12 text-center header_holder">
+	            <h4 class="text-capitalize">Crop Records</h4>
+	        </div>
+	     </div>
+	</section>
+	<section class="content">
+	    <div>
+	        <div class="row" *ngIf="crops$.items">
+	            <div class="col-md-12" *ngIf="(crops$.items).length">
+					<button (click)="newCrop()" class="btn btn-success no_border_rad marg_bottom_small">
+						<i class="fa fa-plus-circle"></i> Add New Crop
+					</button>
+	                <table id="farmers-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	                    <thead>
+	                    <tr>
+	                        <th class="first" scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+	                        <th>Description</th>
+	                        <th>Category</th>
+	                        <th>Created</th>
+	                        <th>Last Updated</th>
+	                        <th class="last">Actions</th>
+	                    </tr>
+	                    </thead>
+	                    <tbody>
+	                    <tr *ngFor="let crop of crops$.items">
+	                    	<td> <a routerLink="/crop/{{crop.uid}}">{{crop.name}}</a></td>
+	                    	<td>{{crop.description}}</td>
+	                    	<td>{{crop.cropCategory.name}}</td>
+	                    	<td>{{crop.created | date:'medium' }}</td>
+	                    	<td>
+								<span *ngIf="crop.updated == '0000-00-00 00:00:00' ">
+									Never
+								</span>
+								<span *ngIf="crop.updated != '0000-00-00 00:00:00' ">
+									{{crop.updated | date:'medium' }}
+								</span>
+							</td>
+	                    	<td>
+								<button class="btn btn-info btn-sm action_btn" (click)="editCrop(crop.uid)">
+									<i class="fa fa-edit"></i>
+									Edit
+								</button>
+								<button class="btn btn-danger btn-sm action_btn" (click)="deleteCrop(crop.uid)">
+									<i class="fa fa-times-circle"></i>
+									Delete
+								</button>
+							</td>
+	                    </tr>
+
+	                    </tbody>
+	                    <tfoot>
+	                    <tr>
+	                    	<th class="first">Name.</th>
+	                        <th>Description</th>
+	                        <th>Category</th>
+	                        <th>Created</th>
+	                        <th>Last Updated</th>
+	                        <th class="last">Actions</th>
+	                    </tr>
+	                    </tfoot>
+	                </table>
+	                <div class="clearfix"></div>
+	            </div>
+				<div class="no_items_yet" *ngIf="(!crops$.items).length">
+					<p>NO crops yet</p>
+				</div>
+	        </div>
+	    </div>
+	</section>
+</div>

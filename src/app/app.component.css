@@ -1,0 +1,19 @@
+.text-capitalize {
+    text-transform: uppercase;
+}
+
+.site-title {
+    margin-bottom: 2em;
+}
+
+.no_border_rad {
+    border-radius: 0;
+}
+
+.marg_bottom_small {
+    margin-bottom: 0.8em;
+}
+
+.border_bottom_gray {
+    border-bottom: 1px solid #DFE6ED;
+}

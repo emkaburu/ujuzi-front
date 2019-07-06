@@ -1,0 +1,30 @@
+<div class="alert-modal">
+    <h4 class="alert-modal-title border_bottom_gray marg_bottom_small">EDIT CROP DETAILS</h4>
+    <p *ngIf="request_feedback">
+        <span>{{ request_feedback.message }}</span>
+    </p>
+    <div>
+        <form [formGroup]="cropForm" class="form" (ngSubmit)="onSubmit(cropForm.value)">
+
+            <input type="text" class="form-control" formControlName="c_name" value="{{crop_data.name}}">
+            <br>
+            <textarea rows=3 class="form-control form-input" type="text" formControlName="c_description"
+                      value="{{crop_data.description}}"></textarea>
+            <br>
+            <label for="">Category {{crop_data.cropCategory.uid}}</label>
+            <select formControlName="c_categories" class="form-control">
+                <option *ngFor="let category of categories; let i = index" [attr.value]="category.uid"
+
+                        [attr.selected]="category.uid == crop_data.cropCategory.uid ? true : null"
+                >
+                    {{category.name}}
+                </option>
+            </select>
+            <div class="alert-modal-buttons">
+                <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success"
+                        type="submit" [disabled]="!cropForm.valid">Create</button>
+                <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

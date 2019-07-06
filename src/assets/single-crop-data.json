@@ -1,0 +1,12 @@
+{
+  "uid": 1,
+  "name": "Nduma",
+  "description": "Sweet with tea",
+  "created": "2019-07-05 01:50:43",
+  "updated": "0000-00-00 00:00:00",
+  "cropCategory": {
+    "uid": 2,
+    "name": "Other",
+    "description": "Arrow roots and all"
+  }
+}

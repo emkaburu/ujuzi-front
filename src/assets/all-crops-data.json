@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "uid": 1,
+      "name": "Nduma",
+      "description": "Sweet with tea",
+      "created": "2019-07-05 01:50:43",
+      "updated": "0000-00-00 00:00:00",
+      "cropCategory": {
+        "uid": 2,
+        "name": "Other",
+        "description": "Arrow roots and all"
+      }
+    },
+    {
+      "uid": 3,
+      "name": "Test Change",
+      "description": "Test Change for desc",
+      "created": "2019-07-05 02:50:43",
+      "updated": "2019-07-05 03:50:43",
+      "cropCategory": {
+        "uid": 1,
+        "name": "Cereal",
+        "description": "E.g. Maize and Beans"
+      }
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "http://ujuzi.dev/crops?expand=cropCategory&page=1"
+    }
+  },
+  "_meta": {
+    "totalCount": 2,
+    "pageCount": 1,
+    "currentPage": 1,
+    "perPage": 20
+  }
+}
