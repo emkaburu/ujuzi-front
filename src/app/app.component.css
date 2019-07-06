@@ -17,3 +17,19 @@
 .border_bottom_gray {
     border-bottom: 1px solid #DFE6ED;
 }
+
+.inline-block {
+    display: inline-block;
+}
+
+.text-right {
+    /*text-align: right;
+    position: absolute;
+    right: 2.5em;*/
+    float: right;
+}
+
+.no_pads {
+    padding-right: 0;
+    padding-left: 0;
+}

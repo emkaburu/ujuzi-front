@@ -17,7 +17,7 @@ export class CropsComponent implements OnInit {
 
     crops$: any = [];
     categories$: any = [];
-    xmlhttp_status: any;
+    request_feedback: any;
     // cropObservable : Observable<Crop[]>;
     // cropObservable : Observable<any[]>;
 

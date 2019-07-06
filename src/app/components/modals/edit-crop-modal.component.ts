@@ -30,9 +30,14 @@ export class EditCropModalComponent implements OnInit{
         this.categories = this.modalData.categories;
 
         this.cropForm = new FormGroup({
-            c_name: new FormControl('', Validators.required),
-            c_description: new FormControl('', Validators.required),
-            c_categories: new FormControl('', Validators.required)
+
+            c_uid: new FormControl(this.crop_data.uid),
+            // c_name: new FormControl('', Validators.required),
+            c_name: new FormControl(this.crop_data.name),
+            // c_description: new FormControl('', Validators.required),
+            c_description: new FormControl(this.crop_data.description),
+            // c_categories: new FormControl('', Validators.required)
+            c_category: new FormControl(this.crop_data.category, Validators.required)
         })
     }
 
@@ -41,16 +46,7 @@ export class EditCropModalComponent implements OnInit{
     }
 
     onSubmit(values){
-        /*let data : any = {};
-        data = values;
-
-        this.cropsService.createCrop(data);
-        this.cropForm.reset();
-
-        //When we come back from API, just reload table then close modal as below
-        this.thisDialogRef.close(true);*/
         let data : any = {};
-
         data = values;
 
         this.cropsService.updateCrop(data)
@@ -58,6 +54,7 @@ export class EditCropModalComponent implements OnInit{
 
                 data  => {
                     this.request_feedback = data;
+                    
                 },
 
                 error  => {
@@ -70,7 +67,7 @@ export class EditCropModalComponent implements OnInit{
                     this.cropForm.reset();
                     //When we come back from API, just reload table then close modal as below
 
-                    this.cropsComponentRef.getCrops();
+                    window.location.reload();
                     this.thisDialogRef.close(true);
                 }
 

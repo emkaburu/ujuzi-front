@@ -6,6 +6,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 /**
  * Import self made modules
@@ -48,7 +50,8 @@ import { CropsService} from './services/crops.service';
         AppRoutingModule,
         BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule
     ],
     entryComponents: [
         DeleteCropModalComponent,

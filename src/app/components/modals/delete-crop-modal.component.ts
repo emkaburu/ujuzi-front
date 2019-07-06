@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import {CropsService} from '../../services/crops.service';
 import { CropsComponent } from '../crops/crops.component';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 
 @Component({
     selector: 'delete-crop-modal',
@@ -17,7 +18,8 @@ export class DeleteCropModalComponent {
         public thisDialogRef: MatDialogRef<DeleteCropModalComponent>,
         public cropsComponentRef: CropsComponent,
         @Inject(MAT_DIALOG_DATA) public modalData: any,
-        public cropsService: CropsService
+        public cropsService: CropsService,
+        private router: ActivatedRoute
     ){}
 
     onCloseConfirm() {
@@ -37,7 +39,9 @@ export class DeleteCropModalComponent {
                 () => {
 
                     //When we come back from API, just reload table then close modal as below
-                    this.cropsComponentRef.getCrops();
+                    window.location.reload();
+
+                    this.cropsComponentRef.ngOnInit();
                     this.thisDialogRef.close(true);
                 }
 

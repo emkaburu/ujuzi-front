@@ -7,14 +7,13 @@ import { Observable } from 'rxjs';
 const httpOptions = {
     headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        // 'Authorization': 'my-auth-token'
-        'Allow-Origin': '*',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Credentials': "*",
+        'Access-Control-Allow-Origin':'*',
     })
 };
 
-// const baseUrl = "http://ujuzi.dev/api/";
-const baseUrl = "http://localhost:8080/api/";
+// The API base url
+const baseUrl = "http://localhost:8080/";
 
 @Injectable({
   providedIn: 'root'
@@ -31,17 +30,17 @@ export class CropsService {
 
     getCrops()  {
 
-        return this.httpClient.get<any>(baseUrl+'crops?expand=cropCategory');
+        return this.httpClient.get<any>(baseUrl+'api/crops?expand=cropCategory');
 
     }
 
     getCrop(crop_id)  {
-        return this.httpClient.get<any>(baseUrl+'crops/'+crop_id+'?expand=cropCategory');
+        return this.httpClient.get<any>(baseUrl+'api/crops/'+crop_id+'?expand=cropCategory');
 
     }
 
     deleteCrop(crop_id)  {
-        let del_url = baseUrl+'crops/'+crop_id;
+        let del_url = baseUrl+'api/crops/'+crop_id;
 
         return this.httpClient.delete(del_url, httpOptions);
 
@@ -57,30 +56,33 @@ export class CropsService {
 
         let body_params = JSON.stringify(post_data);
 
-        return this.httpClient.post(baseUrl+"crops", post_data, httpOptions);
+        return this.httpClient.post(baseUrl+"api/crops", post_data, httpOptions);
 
     }
 
 
     updateCrop(values){
+        console.log("IN SERVICE VALS TO UPDATE WITH");
+        console.log(values);
         //Process values here to conform
 
         // this.httpClient.put(baseUrl+"crops", values);
         //Process values here to conform to API required POST body
-        let post_data = {
+        let put_data = {
+            "uid"         : values.c_uid,
             "name"        : values.c_name,
             "description" : values.c_description,
             "category"    : values.c_category
         };
 
-        let body_params = JSON.stringify(post_data);
+        let body_params = JSON.stringify(put_data);
 
-        return this.httpClient.put(baseUrl+"crops", post_data, httpOptions);
+        return this.httpClient.put(baseUrl+"api/crops", put_data, httpOptions);
     }
 
 
     getCategories() {
-        return this.httpClient.get<any>(baseUrl+'categories');
+        return this.httpClient.get<any>(baseUrl+'api/categories');
     }
 
 }

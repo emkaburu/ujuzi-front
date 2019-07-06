@@ -47,6 +47,9 @@ export class NewCropModalComponent implements OnInit{
 
             data  => {
                 this.request_feedback = data;
+                this.cropsComponentRef.request_feedback = this.request_feedback.message;
+                console.log("Request feedback: ");
+                console.log(this.request_feedback);
             },
 
             error  => {
@@ -58,7 +61,7 @@ export class NewCropModalComponent implements OnInit{
 
                 this.cropForm.reset();
                 //When we come back from API, just reload table then close modal as below
-                this.cropsComponentRef.getCrops();
+                window.location.reload();
                 this.thisDialogRef.close(true);
             }
 

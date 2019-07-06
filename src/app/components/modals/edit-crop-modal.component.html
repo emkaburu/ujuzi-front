@@ -6,24 +6,27 @@
     <div>
         <form [formGroup]="cropForm" class="form" (ngSubmit)="onSubmit(cropForm.value)">
 
-            <input type="text" class="form-control" formControlName="c_name" value="{{crop_data.name}}">
+            <input type="hidden" formControlName="c_uid">
+            <input type="text" class="form-control" formControlName="c_name" >
             <br>
-            <textarea rows=3 class="form-control form-input" type="text" formControlName="c_description"
-                      value="{{crop_data.description}}"></textarea>
+            <textarea rows=5 class="form-control form-input" type="text" formControlName="c_description"></textarea>
             <br>
-            <label for="">Category {{crop_data.cropCategory.uid}}</label>
-            <select formControlName="c_categories" class="form-control">
-                <option *ngFor="let category of categories; let i = index" [attr.value]="category.uid"
+            <label for="">Category</label>
+            <select formControlName="c_category" class="form-control">
+                <option *ngFor="let category of categories; let i = index" [(value)]="category.uid"
 
-                        [attr.selected]="category.uid == crop_data.cropCategory.uid ? true : null"
+                        [attr.selected]="category.uid === crop_data.cropCategory.uid ? true : null"
                 >
                     {{category.name}}
                 </option>
             </select>
             <div class="alert-modal-buttons">
-                <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success"
-                        type="submit" [disabled]="!cropForm.valid">Create</button>
-                <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+                <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success btn btn-success"
+                        type="submit" [disabled]="!cropForm.valid">Update</button>
+                <button mat-raised-button class="alert-modal-button alert-modal-button-failure btn btn-info" type="button"(click)="onCloseCancel()">Cancel</button>
+            </div>
+            <div>
+
             </div>
         </form>
     </div>
