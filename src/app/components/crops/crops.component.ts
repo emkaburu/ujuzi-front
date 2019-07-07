@@ -63,6 +63,7 @@ export class CropsComponent implements OnInit {
             .subscribe(
                 data => {
                     this.categories$ = data;
+
                 },
                 error => {
                     console.log("CATEGORIES FETCH ERROR: ");

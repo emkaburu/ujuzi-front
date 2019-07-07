@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Validators, FormGroup, FormControl} from '@angular/forms';
 import { CropsService } from '../../services/crops.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { CropsComponent } from '../crops/crops.component';
+import {ActivatedRoute, RouterLink, Router} from '@angular/router';
 
 @Component({
     selector: 'new-crop-component',
@@ -19,8 +19,8 @@ export class NewCropModalComponent implements OnInit{
     constructor(
         public cropsService: CropsService,
         public thisDialogRef: MatDialogRef<NewCropModalComponent>,
-        public cropsComponentRef: CropsComponent,
         @Inject(MAT_DIALOG_DATA) public modalData: any,
+        private router: Router
     ){}
 
     ngOnInit(): void {
@@ -47,9 +47,7 @@ export class NewCropModalComponent implements OnInit{
 
             data  => {
                 this.request_feedback = data;
-                this.cropsComponentRef.request_feedback = this.request_feedback.message;
-                console.log("Request feedback: ");
-                console.log(this.request_feedback);
+
             },
 
             error  => {
@@ -60,8 +58,9 @@ export class NewCropModalComponent implements OnInit{
             () => {
 
                 this.cropForm.reset();
-                //When we come back from API, just reload table then close modal as below
-                window.location.reload();
+
+                this.router.navigateByUrl('/crop/', {skipLocationChange: true}).then(()=>
+                    this.router.navigate(["/"]));
                 this.thisDialogRef.close(true);
             }
 

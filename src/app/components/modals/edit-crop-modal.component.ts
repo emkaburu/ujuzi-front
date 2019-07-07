@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Validators, FormGroup, FormControl} from '@angular/forms';
 import { CropsService } from '../../services/crops.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { CropsComponent } from '../crops/crops.component';
+import {ActivatedRoute, RouterLink, Router} from '@angular/router';
 
 @Component({
     selector: 'edit-crop-component',
@@ -21,8 +21,8 @@ export class EditCropModalComponent implements OnInit{
     constructor(
         public cropsService: CropsService,
         public thisDialogRef: MatDialogRef<EditCropModalComponent>,
-        public cropsComponentRef: CropsComponent,
         @Inject(MAT_DIALOG_DATA) public modalData: any,
+        private router: Router
     ){}
 
     ngOnInit(): void {
@@ -32,11 +32,8 @@ export class EditCropModalComponent implements OnInit{
         this.cropForm = new FormGroup({
 
             c_uid: new FormControl(this.crop_data.uid),
-            // c_name: new FormControl('', Validators.required),
-            c_name: new FormControl(this.crop_data.name),
-            // c_description: new FormControl('', Validators.required),
+            c_name: new FormControl(this.crop_data.name, Validators.required),
             c_description: new FormControl(this.crop_data.description),
-            // c_categories: new FormControl('', Validators.required)
             c_category: new FormControl(this.crop_data.category, Validators.required)
         })
     }
@@ -54,7 +51,7 @@ export class EditCropModalComponent implements OnInit{
 
                 data  => {
                     this.request_feedback = data;
-                    
+
                 },
 
                 error  => {
@@ -67,7 +64,8 @@ export class EditCropModalComponent implements OnInit{
                     this.cropForm.reset();
                     //When we come back from API, just reload table then close modal as below
 
-                    window.location.reload();
+                    this.router.navigateByUrl('/crop/1', {skipLocationChange: true}).then(()=>
+                        this.router.navigate(["/"]));
                     this.thisDialogRef.close(true);
                 }
 
